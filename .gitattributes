@@ -1,0 +1,8 @@
+# 统一用 LF。不写这个，Windows 上 git 会把每次 checkout 改写成 CRLF，
+# 于是"什么都没改"也会显示一片 diff。
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.exe binary
+*.zstd binary

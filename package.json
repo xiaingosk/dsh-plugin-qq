@@ -1,0 +1,58 @@
+{
+  "name": "dsh-plugin-qq",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "把 QQ 私聊接入 DeepSeek Harness：QQ 消息变成 DSH 会话里的用户输入，agent 的回复发回 QQ。",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "qq",
+    "onebot",
+    "napcat",
+    "bridge",
+    "聊天机器人"
+  ],
+  "license": "MIT",
+  "author": "xiaing",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "client",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node test/mock-render.mjs && node test/napcat-config.mjs && node test/napcat-detect.mjs && node test/quote.mjs && node test/delivery.mjs",
+    "prepublishOnly": "npm test"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.4",
+    "@deepseek-ai/dsh-llm": ">=0.1.7-rc.2",
+    "@deepseek-ai/dsh-tools": ">=0.1.7-rc.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": { "optional": true },
+    "@deepseek-ai/dsh-llm": { "optional": true },
+    "@deepseek-ai/dsh-tools": { "optional": true }
+  }
+}
